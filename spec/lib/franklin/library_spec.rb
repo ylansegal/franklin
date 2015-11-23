@@ -13,5 +13,10 @@ module Franklin
     it "has a url" do
       expect(subject.url).to be == url
     end
+
+    it "compares to other libraries by values" do
+      expect(subject).to be == described_class.new(name, url)
+      expect(subject).to_not be == described_class.new("other", url)
+    end
   end
 end
