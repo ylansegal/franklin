@@ -1,6 +1,7 @@
 require "franklin/version"
 require "franklin/config"
+require "franklin/search"
 
 module Franklin
-  # Your code goes here...
+
 end
