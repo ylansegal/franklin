@@ -6,6 +6,7 @@ require "franklin/version"
 Gem::Specification.new do |spec|
   spec.name          = "franklin"
   spec.version       = Franklin::VERSION
+  spec.license       = "MIT"
   spec.authors       = ["Ylan Segal"]
   spec.email         = ["ylan@segal-family.com"]
 

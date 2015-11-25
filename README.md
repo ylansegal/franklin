@@ -78,3 +78,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/ylansegal/franklin.
+
+## License
+
+This software is provided under the terms of the MIT license. See LICENSE.txt for more information
