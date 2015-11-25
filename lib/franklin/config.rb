@@ -14,7 +14,7 @@ module Franklin
 
     class << self
       def from_yaml(yaml)
-        self.new(YAML.load(yaml))
+        new(YAML.load(yaml))
       end
 
       def load_from_file(file_path = DEFAULT_CONFIG_FILE)
