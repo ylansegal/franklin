@@ -4,6 +4,12 @@ require "pry"
 require "vcr"
 require "securerandom"
 
+RSpec.configure do |config|
+  config.mock_with :rspec do |mocks|
+    mocks.verify_doubled_constant_names = true
+  end
+end
+
 VCR.configure do |config|
   config.cassette_library_dir = "spec/vcr_cassettes"
   config.hook_into :webmock # or :fakeweb
