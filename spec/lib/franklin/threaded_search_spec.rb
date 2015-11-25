@@ -58,6 +58,14 @@ module Franklin
           item_3 => [availability_4]
         }
       end
+
+      context "when no search term is provided" do
+        let(:search_terms) { "" }
+
+        it "raises an ArgumentError" do
+          expect { results }.to raise_error(ArgumentError)
+        end
+      end
     end
   end
 end
