@@ -6,8 +6,10 @@ describe Franklin do
   end
 
   describe ".run", vcr: true do
+    let(:example_config_path) { File.join(__dir__, "example_franklin_config.yml") }
+
     it "integrates end-to-end" do
-      expect { Franklin.run("Seveneves", StringIO.new) }.to_not raise_error
+      expect { Franklin.run(example_config_path, "Seveneves", StringIO.new) }.to_not raise_error
     end
   end
 end
