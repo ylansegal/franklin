@@ -8,9 +8,66 @@ Install gem:
 
     $ gem install franklin
 
+## Configuration
+
+Franklin needs to be configured with information about the Overdrive libraries it will search. It expects a file in YAML format to exist in your home directory called `.franklin`. The contents of the file should look like:
+
+``` yml
+---
+:libraries:
+  - :name: San Francisco Public Library
+    :url: http://sfpl.lib.overdrive.com
+  - :name: San Diego Public Library
+    :url: http://sdpl.lib.overdrive.com
+```
+
+There needs to be a minimum of one library, but there is no maximum. The `name` can be anything and will be included when the search results are presented. The `url` should point to the domain of the public library. It can be obtained by visiting Overdrive's site for each library, copying the url and striping everything after the domain name.
+
 ## Usage
 
-TODO: Write usage instructions here
+Once the library has been installed and configured, the `franklin` executable will be available. It can be called from the command line with the list of terms to be searched for:
+
+```
+$ franklin chamber of secrets
+Searched for: chamber of secrets
+======================================================
+Harry Potter and the Chamber of Secrets
+By J.K. Rowling
+Format: Audiobook
+Availability:
+  2.8 people/copy @ San Francisco Public Library
+  15.5 people/copy @ San Diego Public Library
+  1.3 people/copy @ San Diego County Library
+  5.4 people/copy @ Los Angeles County Library
+======================================================
+Harry Potter and the Chamber of Secrets
+By J.K. Rowling
+Format: eBook
+Availability:
+  0.9 people/copy @ San Francisco Public Library
+  Available @ San Diego Public Library
+  0.6 people/copy @ San Diego County Library
+  0.0 people/copy @ Los Angeles County Library
+======================================================
+Harry Potter
+By Chris Peacock
+Format: eBook
+Availability:
+  2.5 people/copy @ San Francisco Public Library
+  1.0 people/copy @ San Diego Public Library
+======================================================
+Room at Heron's Inn
+By Ginger Chambers
+Format: eBook
+Availability:
+  Available @ San Francisco Public Library
+======================================================
+The Secret of the Fiery Chamber
+By Carolyn Keene
+Format: eBook
+Availability:
+  Available @ San Diego County Library
+```
 
 ## Development
 
