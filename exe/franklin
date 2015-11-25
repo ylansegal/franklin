@@ -2,4 +2,20 @@
 
 require "franklin"
 
-Franklin.run(nil, ARGV.join(" "), STDOUT)
+begin
+  Franklin.run(nil, ARGV.join(" "), STDOUT)
+rescue ArgumentError => ex
+  puts "Oops! #{ex.message}"
+  puts "Usage: franklin search_term [other_term..]"
+rescue Errno::ENOENT
+  puts <<-ERROR.gsub(/^  /, "")
+  Oops! It looks like you have not configured franklin
+  Please add a configuration file in $HOME/.franklin that looks like this:
+  ---
+  :libraries:
+    - :name: San Francisco Public Library
+      :url: http://sfpl.lib.overdrive.com
+    - :name: San Diego Public Library
+      :url: http://sdpl.lib.overdrive.com
+  ERROR
+end
