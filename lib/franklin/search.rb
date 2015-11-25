@@ -48,9 +48,9 @@ module Franklin
     def parse_availability(container)
       copies_info = container.css("div.img-and-info-contain.title-data").first.attributes
 
-      total_copies = copies_info["data-copiestotal"].value
-      available_copies = copies_info["data-copiesavail"].value
-      wait_list_size = copies_info["data-numwaiting"].value
+      total_copies = copies_info["data-copiestotal"].value.to_i
+      available_copies = copies_info["data-copiesavail"].value.to_i
+      wait_list_size = copies_info["data-numwaiting"].value.to_i
 
       Availability.new(library, total_copies, available_copies, wait_list_size)
     end

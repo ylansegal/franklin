@@ -14,6 +14,9 @@ module Franklin
         results.each do |key, value|
           expect(key).to be_an(Item)
           expect(value).to be_an(Availability)
+          expect(value.total_copies).to be_a(Numeric)
+          expect(value.available_copies).to be_a(Numeric)
+          expect(value.wait_list_size).to be_a(Numeric)
         end
       end
 
