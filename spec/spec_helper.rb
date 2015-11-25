@@ -1,7 +1,8 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "franklin"
 require "pry"
-require 'vcr'
+require "vcr"
+require "securerandom"
 
 VCR.configure do |config|
   config.cassette_library_dir = "spec/vcr_cassettes"
@@ -13,7 +14,27 @@ module Franklin
   class Library
     class << self
       def fixture
-        self.new("San Francisco Public Librart", "http://sfpl.lib.overdrive.com")
+        new("San Francisco Public Librart", "http://sfpl.lib.overdrive.com")
+      end
+
+      def random_fixture
+        new(SecureRandom.hex, "http://#{SecureRandom.hex}.com")
+      end
+    end
+  end
+
+  class Availability
+    class << self
+      def random_fixture
+        new(Library.random_fixture, rand(20), rand(15), 0)
+      end
+    end
+  end
+
+  class Item
+    class << self
+      def random_fixture
+        new(SecureRandom.uuid, SecureRandom.hex, SecureRandom.hex, "eBook")
       end
     end
   end
