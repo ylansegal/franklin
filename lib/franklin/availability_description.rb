@@ -15,7 +15,11 @@ module Franklin
     end
 
     def copies_per_person
-      (wait_list_size.to_f / total_copies.to_f).round(1)
+      wait_list_size? ? (wait_list_size.to_f / total_copies.to_f).round(1) : "Unknown"
+    end
+
+    def wait_list_size?
+      wait_list_size > 0
     end
   end
 end
