@@ -27,7 +27,7 @@ module Franklin
       subject { described_class.load_from_file(file_path) }
       let(:file_path) { "franklin.config" }
 
-      before { File.write(file_path, yaml)}
+      before { File.write(file_path, yaml) }
       after { File.delete(file_path) }
 
       it "loads a config from a file" do
@@ -36,6 +36,16 @@ module Franklin
 
       context "when no file_path is provided" do
         subject { described_class.load_from_file }
+        let(:default_path) { File.join(Dir.home, ".franklin") }
+
+        it "defaults to ~/.franklin" do
+          expect(File).to receive(:read).with(default_path).and_return(yaml)
+          expect(subject.libraries).to be == [library]
+        end
+      end
+
+      context "when nil file_path is provided" do
+        subject { described_class.load_from_file(nil) }
         let(:default_path) { File.join(Dir.home, ".franklin") }
 
         it "defaults to ~/.franklin" do

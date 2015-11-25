@@ -17,8 +17,8 @@ module Franklin
         new(YAML.load(yaml))
       end
 
-      def load_from_file(file_path = DEFAULT_CONFIG_FILE)
-        from_yaml(File.read(file_path))
+      def load_from_file(file_path = nil)
+        from_yaml(File.read(file_path || DEFAULT_CONFIG_FILE))
       end
     end
   end
