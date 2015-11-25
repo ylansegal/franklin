@@ -1,3 +1,5 @@
+require "set"
+
 module Franklin
   class Collate
     def perform(search_results)
