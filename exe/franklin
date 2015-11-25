@@ -5,8 +5,10 @@ require "franklin"
 begin
   Franklin.run(nil, ARGV.join(" "), STDOUT)
 rescue ArgumentError => ex
-  puts "Oops! #{ex.message}"
-  puts "Usage: franklin search_term [other_term..]"
+  puts <<-ERROR.gsub(/^  /, "")
+  Oops! #{ex.message}"
+  Usage: franklin search_term [other_term..]"
+  ERROR
 rescue Errno::ENOENT
   puts <<-ERROR.gsub(/^  /, "")
   Oops! It looks like you have not configured franklin
