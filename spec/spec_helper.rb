@@ -14,7 +14,7 @@ module Franklin
   class Library
     class << self
       def fixture
-        new("San Francisco Public Librart", "http://sfpl.lib.overdrive.com")
+        new("San Francisco Public Library", "http://sfpl.lib.overdrive.com")
       end
 
       def random_fixture
