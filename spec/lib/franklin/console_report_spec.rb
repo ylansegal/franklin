@@ -24,7 +24,7 @@ module Franklin
 
       it "includes availability information" do
         expect(result).to match(/^Availability:/)
-        expect(result).to match(/^    #{availability_description}/)
+        expect(result).to match(/^  #{availability_description}/)
       end
     end
   end
