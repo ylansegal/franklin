@@ -2,7 +2,7 @@ require "spec_helper"
 
 module Franklin
   describe Library do
-    subject { described_class.new(name, url) 	}
+    subject { described_class.new(name, url) }
     let(:name) { "San Francisco Public Library" }
     let(:url) { "http://sfpl.lib.overdrive.com/" }
 
