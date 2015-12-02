@@ -21,7 +21,7 @@ Franklin needs to be configured with information about the Overdrive libraries i
     :url: http://sdpl.lib.overdrive.com
 ```
 
-There needs to be a minimum of one library, but there is no maximum. The `name` can be anything and will be included when the search results are presented. The `url` should point to the domain of the public library. It can be obtained by visiting Overdrive's site for each library, copying the url and striping everything after the domain name.
+There needs to be a minimum of one library, but there is no maximum. The `name` can be anything and will be included when the search results are presented. The `url` should point to the domain of the public library. It can be obtained by visiting Overdrive's site for each library, copying the url and stripping everything after the domain name.
 
 ## Usage
 
