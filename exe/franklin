@@ -3,7 +3,7 @@
 require "franklin"
 
 begin
-  Franklin.run(nil, ARGV.join(" "), STDOUT)
+  Franklin.run(ARGV.join(" "), out: STDOUT)
 rescue ArgumentError => ex
   puts <<-ERROR.gsub(/^  /, "")
   Oops! #{ex.message}"

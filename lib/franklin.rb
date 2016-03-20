@@ -4,10 +4,10 @@ require "franklin/threaded_search"
 require "franklin/console_report"
 
 module Franklin
-  def run(config_path, search_terms, out)
-    config = Config.load_from_file(config_path)
+  def run(search_terms, opts)
+    config = Config.load_from_file(opts[:config_path])
     results = ThreadedSearch.new(config.libraries).perform(search_terms)
-    ConsoleReport.new(search_terms, results).print_to_out(out)
+    ConsoleReport.new(search_terms, results).print_to_out(opts[:out])
   end
 
   module_function :run
