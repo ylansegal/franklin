@@ -2,7 +2,7 @@
 require "franklin"
 require "optparse"
 
-options = { out: STDOUT, config_path: "~/.franklin" }
+options = { out: STDOUT, config_path: Franklin::Config::DEFAULT_CONFIG_FILE }
 parser = OptionParser.new { |opts|
   opts.banner = "Usage: frankling [options] search_term1 search_term2..."
 
@@ -16,7 +16,7 @@ parser = OptionParser.new { |opts|
     options[:config_path] = config_path
   end
 
-  opts.on "-tTYPE", "--type=TYPE", "Filter results by type (eBook, Audiobook, etc)" do |type|
+  opts.on "-tTYPE", "--type=TYPE", "Filter results by type (eBook, Audiobook, etc). Will override config" do |type|
     options[:type] = type
   end
 }
@@ -40,5 +40,6 @@ rescue Errno::ENOENT
       :url: http://sfpl.lib.overdrive.com
     - :name: San Diego Public Library
       :url: http://sdpl.lib.overdrive.com
+  :default_type: eBook # Optional, leave empty to search for all types
   ERROR
 end

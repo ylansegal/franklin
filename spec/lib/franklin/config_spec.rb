@@ -3,8 +3,9 @@ require "yaml"
 
 module Franklin
   describe Config do
-    let(:config_data) { { libraries: [{ name: library.name, url: library.url }] } }
+    let(:config_data) { { libraries: [{ name: library.name, url: library.url }], default_type: default_type } }
     let(:library) { Library.new("Alexnadria Library", "http://alexandria.eg") }
+    let(:default_type) { "eBook" }
     let(:yaml) { YAML.dump(config_data) }
 
     describe "#initialize" do
@@ -32,6 +33,10 @@ module Franklin
 
       it "loads a config from a file" do
         expect(subject.libraries).to be == [library]
+      end
+
+      it "loads a default_type from a file" do
+        expect(subject.default_type).to be == default_type
       end
 
       context "when no file_path is provided" do

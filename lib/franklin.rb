@@ -8,7 +8,7 @@ module Franklin
   def run(search_terms, opts)
     config = Config.load_from_file(opts[:config_path])
     results = ThreadedSearch.new(config.libraries).perform(search_terms)
-    filtered_results = TypeFilter.new(opts[:type]).perform(results)
+    filtered_results = TypeFilter.new(opts[:type] || config.default_type).perform(results)
     ConsoleReport.new(search_terms, filtered_results).print_to_out(opts[:out])
   end
 
