@@ -1,13 +1,26 @@
 #!/usr/bin/env ruby
-
 require "franklin"
+
+require "optparse"
+# options = {}
+parser = OptionParser.new { |opts|
+  opts.banner = "Usage: frankling [options] search terms"
+
+  opts.on("-h", "--help", "Prints this help") do
+    puts opts
+    puts "Franklin v#{Franklin::VERSION}"
+    exit
+  end
+}
+
+parser.parse!
 
 begin
   Franklin.run(ARGV.join(" "), out: STDOUT)
 rescue ArgumentError => ex
   puts <<-ERROR.gsub(/^  /, "")
-  Oops! #{ex.message}"
-  Usage: franklin search_term [other_term..]"
+  Oops! #{ex.message}
+  #{parser}
   ERROR
 rescue Errno::ENOENT
   puts <<-ERROR.gsub(/^  /, "")
