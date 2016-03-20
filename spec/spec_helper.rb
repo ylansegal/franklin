@@ -39,8 +39,8 @@ module Franklin
 
   class Item
     class << self
-      def random_fixture
-        new(SecureRandom.uuid, SecureRandom.hex, SecureRandom.hex, "eBook")
+      def random_fixture(type = "eBook")
+        new(SecureRandom.uuid, SecureRandom.hex, SecureRandom.hex, type)
       end
     end
   end

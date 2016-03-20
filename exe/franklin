@@ -15,6 +15,10 @@ parser = OptionParser.new { |opts|
   opts.on("--config-path=CONFIG", "Path to configuration file. Defaults to ~/.franklin") do |config_path|
     options[:config_path] = config_path
   end
+
+  opts.on "-tTYPE", "--type=TYPE", "Filter results by type (eBook, Audiobook, etc)" do |type|
+    options[:type] = type
+  end
 }
 
 parser.parse!
