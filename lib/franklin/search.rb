@@ -1,16 +1,20 @@
 require "franklin/item"
 require "franklin/availability"
 require "mechanize"
+require "json"
 
 module Franklin
   class Search
+    JS_VARIABLE = /window\.OverDrive\.mediaItems/
+
     def initialize(library)
       @library = library
     end
 
     def perform(search_term)
-      results = search_library(search_term)
-      parse_results(results)
+      results_page = search_library(search_term)
+      results_json = extract_json(page: results_page)
+      parse(json: results_json)
     end
 
     private
@@ -18,41 +22,35 @@ module Franklin
     attr_reader :library
 
     def search_library(search_term)
-      form = prepare_form(search_term)
-      form.submit
+      prepare_form(search_term).submit
     end
 
     def prepare_form(search_term)
-      ::Mechanize.new.get(library.url).forms.first.tap { |form|
-        form.FullTextCriteria = search_term
+      ::Mechanize.new.get(library.url).form_with(action: "/search") { |form|
+        form.query = search_term
       }
     end
 
-    def parse_results(results)
-      results.search("div.containAll").each_with_object({}) { |container, result|
-        result[parse_item(container)] = parse_availability(container)
+    def extract_json(page:)
+      script_tag = page.search("script").find { |script| script.text =~ JS_VARIABLE }
+      var_assignment_line = script_tag.text.lines.find { |line| line =~ JS_VARIABLE }
+      raw_javascript_object = var_assignment_line.scan(/{.*}/).first
+      JSON.parse(raw_javascript_object)
+    end
+
+    def parse(json:)
+      json.each_with_object({}) { |raw, result|
+        id, data = raw
+        result[parse_item(id: id, data: data)] = parse_availability(data: data)
       }
     end
 
-    def parse_item(container)
-      item_info = container.css("a.share-links").first.attributes
-      id = item_info["data-sharecrid"].value
-      title = item_info["data-sharetitle"].value
-      author = item_info["data-sharecreator"].value
-
-      format = container.css("span.tcc-icon-span").first.attributes["data-iconformat"].value
-
-      Item.new(id, title, author, format)
+    def parse_item(id:, data:)
+      Item.new(id, data["title"], data["firstCreatorName"], data["type"]["name"])
     end
 
-    def parse_availability(container)
-      copies_info = container.css("div.img-and-info-contain.title-data").first.attributes
-
-      total_copies = copies_info["data-copiestotal"].value.to_i
-      available_copies = copies_info["data-copiesavail"].value.to_i
-      wait_list_size = copies_info["data-numwaiting"].value.to_i
-
-      Availability.new(library, total_copies, available_copies, wait_list_size)
+    def parse_availability(data:)
+      Availability.new(library, data["ownedCopies"], data["availableCopies"], data["holdsCount"])
     end
   end
 end
