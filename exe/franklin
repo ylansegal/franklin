@@ -35,11 +35,11 @@ rescue Errno::ENOENT
   Oops! It looks like you have not configured franklin
   Please add a configuration file in $HOME/.franklin that looks like this:
   ---
-  :libraries:
-    - :name: San Francisco Public Library
-      :url: http://sfpl.lib.overdrive.com
-    - :name: San Diego Public Library
-      :url: http://sdpl.lib.overdrive.com
-  :default_type: eBook # Optional, leave empty to search for all types
+  libraries:
+    - name: San Francisco Public Library
+      url: http://sfpl.lib.overdrive.com
+    - name: San Diego Public Library
+      url: http://sdpl.lib.overdrive.com
+  default_type: eBook # Optional, leave empty to search for all types
   ERROR
 end
