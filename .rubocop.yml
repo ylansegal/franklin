@@ -1,0 +1,36 @@
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.3
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Style/BlockDelimiters:
+  EnforcedStyle: semantic
+  FunctionalMethods:
+     - before
+     - after
+     - subject
+     - subject!
+     - let
+     - let!
+
+  AutoCorrect: false
+
+Style/SingleLineBlockParams:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/AndOr:
+  AutoCorrect: false
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
