@@ -11,7 +11,7 @@ module Franklin
     end
 
     def available?
-      available_copies > 0
+      available_copies.positive?
     end
 
     def copies_per_person
@@ -19,7 +19,7 @@ module Franklin
     end
 
     def wait_list_size?
-      wait_list_size > 0
+      wait_list_size.positive?
     end
   end
 end
