@@ -7,10 +7,10 @@ module Franklin
     attr_reader :libraries, :default_type
 
     def initialize(data)
-      @libraries = data.fetch(:libraries).map { |library|
-        Library.new(library.fetch(:name), library.fetch(:url))
+      @libraries = data.fetch("libraries").map { |library|
+        Library.new(library.fetch("name"), library.fetch("url"))
       }
-      @default_type = data[:default_type]
+      @default_type = data["default_type"]
     end
 
     class << self

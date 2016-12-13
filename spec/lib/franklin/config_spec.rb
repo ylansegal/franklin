@@ -3,7 +3,14 @@ require "yaml"
 
 module Franklin
   describe Config do
-    let(:config_data) { { libraries: [{ name: library.name, url: library.url }], default_type: default_type } }
+    let(:config_data) {
+      {
+        "libraries" => [
+          { "name" => library.name, "url" => library.url }
+        ],
+        "default_type" => default_type
+      }
+    }
     let(:library) { Library.new("Alexnadria Library", "http://alexandria.eg") }
     let(:default_type) { "eBook" }
     let(:yaml) { YAML.dump(config_data) }
