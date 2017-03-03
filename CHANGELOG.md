@@ -1,3 +1,6 @@
+# 0.4.1
+- Use stderr for error output, instead of stdout
+
 # 0.4.0
 - Use strings for keys in YAML configuration file, instead of non-standard symbols
 

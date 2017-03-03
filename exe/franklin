@@ -26,12 +26,12 @@ parser.parse!
 begin
   Franklin.run(ARGV.join(" "), options)
 rescue ArgumentError => ex
-  puts <<-ERROR.gsub(/^  /, "")
+  STDERR.puts <<-ERROR.gsub(/^  /, "")
   Oops! #{ex.message}
   #{parser}
   ERROR
 rescue Errno::ENOENT
-  puts <<-ERROR.gsub(/^  /, "")
+  STDERR.puts <<-ERROR.gsub(/^  /, "")
   Oops! It looks like you have not configured franklin
   Please add a configuration file in $HOME/.franklin that looks like this:
   ---
