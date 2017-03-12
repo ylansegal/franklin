@@ -39,8 +39,7 @@ module Franklin
     end
 
     def parse(json:)
-      json.each_with_object({}) { |raw, result|
-        id, data = raw
+      json.each_with_object({}) { |(id, data), result|
         result[parse_item(id: id, data: data)] = parse_availability(data: data)
       }
     end
