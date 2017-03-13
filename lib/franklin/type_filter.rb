@@ -6,7 +6,7 @@ module Franklin
 
     def perform(results)
       return results unless type
-      results.dup.keep_if { |item, _availability| item.format.casecmp(type).zero? }
+      results.select { |item, _availability| item.format.casecmp(type).zero? }
     end
 
     private
