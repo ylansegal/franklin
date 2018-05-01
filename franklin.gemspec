@@ -1,5 +1,5 @@
-# coding: utf-8
-lib = File.expand_path("../lib", __FILE__)
+
+lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "franklin/version"
 
@@ -21,10 +21,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency "mechanize", "~> 2.7"
 
   spec.add_development_dependency "bundler", "~> 1.10"
+  spec.add_development_dependency "pry", "~> 0.10"
   spec.add_development_dependency "rake", "~> 12.0"
   spec.add_development_dependency "rspec", "~> 3.4"
-  spec.add_development_dependency "pry", "~> 0.10"
+  spec.add_development_dependency "rubocop", "~> 0.47"
   spec.add_development_dependency "vcr", "~> 3.0"
   spec.add_development_dependency "webmock", "~> 2.00"
-  spec.add_development_dependency "rubocop", "0.46"
 end

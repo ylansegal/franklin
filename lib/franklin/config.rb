@@ -15,7 +15,7 @@ module Franklin
 
     class << self
       def from_yaml(yaml)
-        new(YAML.load(yaml))
+        new(YAML.safe_load(yaml))
       end
 
       def load_from_file(file_path = nil)
